@@ -1,20 +1,11 @@
 import express from "express";
-import Users from "../models/Users.js";
+import {register1,register} from "../services/userServices.js";
+
 
 const router = express.Router();
 
-router.get("/", (req, res) => {
-  res.send("get isteği geldi");
-});
+router.get("/", register1);
 
-router.post("/register", async (req, res) => {
-  const user = req.body;
-  try {
-    const data = await Users.create(user);
-    res.json(data);
-  } catch (error) {
-    res.status(400).json({ message: "User could not created." });
-  }
-});
+router.post("/register", register);
 
 export default router;
