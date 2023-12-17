@@ -30,6 +30,10 @@ const userSchema = new mongoose.Schema({
     type: Array,
     default: ["user"],
   },
+  isDeleteAccount: {
+    type: Boolean,
+    default: false
+  },
 });
 
 const Users = mongoose.model("Users", userSchema);
