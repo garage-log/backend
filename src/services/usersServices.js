@@ -1,9 +1,5 @@
 import Users from "../models/Users.js";
 
-const getIstegi = (req, res) => {
-    res.send("get isteği geldi");
-  };
-
 const login = async (req, res) => {
   const { username, password } = req.body;
   const data = await Users.findOne({ username }).exec();
@@ -39,6 +35,7 @@ const find = async(req, res) =>{
               id: data._id,
               username:data.username,
               email:data.email,
+              password:data.password,
           }
       })
 
@@ -56,8 +53,10 @@ const allUsers = async(req, res) =>{
               id: item._id,
               username:item.username,
               email:item.email,
+              password:item.password,
           }
-      })
+      }
+      )
 
       res.json({user});
 
@@ -66,4 +65,30 @@ const allUsers = async(req, res) =>{
   }
 };
 
-  export {getIstegi, login, register, find, allUsers};
+const update = async(req, res) => {
+  
+  console.log(req.body)
+  const user = req.body;
+  try {
+      const data = await Users.updateOne({_id: user.id}, {$set: user}).exec();
+      
+      res.json(data);
+
+  } catch (error) {
+      res.status(403).json({message:" User could not update."});
+  } 
+};
+
+const remove = async(req, res) => {
+  const id = req.params.id;
+  try {
+      const data = await Users.deleteOne({_id: id}).exec();
+      
+      res.json(data);
+
+  } catch (error) {
+      res.status(403).json({message:" User could not delete."});
+  } 
+};
+
+export {login, register, find, allUsers, update, remove};
