@@ -1,13 +1,12 @@
 import express from "express";
-import { register1,register, find } from "../services/userServices.js";
-
+import { getIstegi, login, register, find } from "../services/usersServices.js";
 
 const router = express.Router();
 
-router.get("/", register1);
-
+router.get("/", getIstegi);
+router.post("/login", login);
 router.post("/register", register);
-
+router.post("/register", register);
 router.post("/:id", find);
 
 export default router;
