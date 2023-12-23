@@ -7,6 +7,7 @@ import {
         update,
         remove,
     } from "../services/usersServices.js";
+import auth from "../middlewares/auth.js";
 
 const router = express.Router();
 
