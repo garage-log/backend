@@ -6,11 +6,11 @@ if (!authHeader) return res.status(403).send({message: "No token data...."});
 
     const token = authHeader && authHeader.split(" ")[1];
 
-    jwt.verify(token, process.env.jwt_secret_key, (err, data) => { // verify ile  token ile şifreyi karsılaştırdı
+    jwt.verify(token, process.env.ACCESS_TOKEN, (err, data) => { 
         if (err) {
             return res.status(403).send({message: "Unauthorized....", error:err});
         }
-        next();//bu işin bittiğini next ile belirtiyoruz.
+        next();
     });
    
 };
