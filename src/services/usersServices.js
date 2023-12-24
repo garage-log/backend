@@ -19,11 +19,11 @@ const login = async (req, res) => {
     email: data.email,
   };
   
-  const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN); // yukarıdaki user objesini şifreler. ve değişken atar.
+  const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN);
   res.json({
     user: {
       token: accessToken,
-      ...user, // user tokeni ekleyip gonderiri
+      ...user, 
     },
   });
 };

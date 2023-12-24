@@ -45,8 +45,6 @@ const hash = (pass) => {
   return hashed;
 }
 
-//password hashing kısmını
-// save kısmı çalışmadan once ilk burası çalısacak pasword şifreleyecek ve daha sonra kaydedecek.
 userSchema.pre("save", function(next){
   if(this.password) {
     this.password = hash(this.password);
@@ -54,13 +52,9 @@ userSchema.pre("save", function(next){
   }
 });
 
-// password validate kısmı
-userSchema.methods.validatePassword = function ( pass) {//method ismi validatePassword not buraya istediğimiz ismi verebiliriz. 
-  return bcrypt.compare(pass, this.password);//true veya false değer döndürür.
+userSchema.methods.validatePassword = function ( pass) { 
+  return bcrypt.compare(pass, this.password);
 }
-
-
-
 
 const Users = mongoose.model("Users", userSchema);
 
