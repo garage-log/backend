@@ -2,12 +2,11 @@ import Users from "../models/Users.js";
 
 const login = async (req, res) => {
   const { username, password } = req.body;
-  const data = await Users.findOne({ username }).exec();// kullanıcı adını burada arıyor.
+  const data = await Users.findOne({ username }).exec();
   if (!data) {
-    return res.status(404).json({message: "User cannot be found"}); // kullanıcıadı bulamasa bu hatayı donuyor.
+    return res.status(404).json({message: "User cannot be found"}); 
   };
   
-  // Burayı hashe ile kontrol edilecek.
   const isValidated = await data.validatePassword(password);
   if(!isValidated) {
     return res.status(403).json({ message: " The password is incorrect"})
