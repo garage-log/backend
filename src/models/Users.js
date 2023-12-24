@@ -38,18 +38,29 @@ const userSchema = new mongoose.Schema({
 });
 
 const hash = (pass) => {
- return bcrypt.hashSync(pass, bcrypt.genSaltSync(10), (err, hash) =>{
-  if (err) throw err; // hafa varsa burada durur. save işlemini yapmaz.
-    pass = hash;
- })
+  const hashed = bcrypt.hashSync(pass, bcrypt.genSaltSync(10), (err, hash) => {
+      if (err) throw err;
+      pass = hash;
+  })
+  return hashed;
 }
 
+//password hashing kısmını
+// save kısmı çalışmadan once ilk burası çalısacak pasword şifreleyecek ve daha sonra kaydedecek.
 userSchema.pre("save", function(next){
   if(this.password) {
     this.password = hash(this.password);
     next();
   }
 });
+
+// password validate kısmı
+userSchema.methods.validatePassword = function ( pass) {//method ismi validatePassword not buraya istediğimiz ismi verebiliriz. 
+  return bcrypt.compare(pass, this.password);//true veya false değer döndürür.
+}
+
+
+
 
 const Users = mongoose.model("Users", userSchema);
 
