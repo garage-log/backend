@@ -3,11 +3,20 @@ import bodyParser from "body-parser";
 import "dotenv/config"; 
 import usersRoutes from "./routes/usersRoutes.js"; 
 import mongoose from "mongoose";
+//import cors from 'cors';
+
+/*var corsOptions = {
+  origin: "*",
+  optionsSuccessStatus: 200,
+};
+*/
 
 const PORT = process.env.PORT;
 const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+
+//app.use(cors(corsOptions));
 
 const db = process.env.MongoURI;
 mongoose

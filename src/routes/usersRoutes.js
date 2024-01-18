@@ -1,20 +1,24 @@
 import express from "express";
-import Users from "../models/Users.js";
+import { 
+        login, 
+        register, 
+        find, 
+        allUsers, 
+        update,
+        remove,
+    } from "../services/usersServices.js";
+import auth from "../middlewares/auth.js";
 
 const router = express.Router();
 
-router.get("/", (req, res) => {
-  res.send("get isteği geldi");
-});
+router.post("/login", login);
+router.post("/register", register);
+router.get("/:id", find);
+router.post("/allUsers", auth, allUsers);
+router.patch("/", update);
+router.delete("/:id", remove);
 
-router.post("/register", async (req, res) => {
-  const user = req.body;
-  try {
-    const data = await Users.create(user);
-    res.json(data);
-  } catch (error) {
-    res.status(400).json({ message: "User could not created." });
-  }
-});
+//burada get isteği  ( / ) iken çalısıyor. Ama /hepsi durumda ike .alışmıyor bunu nedeni nedir.
+//router.get("/hepsi", allUsers);
 
 export default router;
