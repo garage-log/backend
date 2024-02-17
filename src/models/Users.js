@@ -6,6 +6,7 @@ const userSchema = new mongoose.Schema({
   username: {
     type: String,
     required: true,
+    unique: true,
   },
   password: {
     type: String,
@@ -27,6 +28,11 @@ const userSchema = new mongoose.Schema({
   createdAt: {
     type: Date,
     default: Date.now(),
+  },
+  role: {
+    type: Array,
+    ref: "RoleUser",
+    default: ["65abdcc2e96882426a0ba861"],
   },
   isDeleteAccount: {
     type: Boolean,

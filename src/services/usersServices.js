@@ -1,15 +1,24 @@
 import Users from "../models/Users.js";
 import jwt from "jsonwebtoken";
 
-
-
 const register = async (req, res) => {
   const user = req.body;
   try {
     const data = await Users.create(user);
     res.status(200).json(data);
   } catch (error) {
-    res.status(400).json({ message: "User could not created." });
+     if (error.keyValue.username) {
+      res.status(400).json({ message: "Existing username error." });
+      return;
+    }
+
+    if (error.keyValue.email) {
+      res.status(400).json({ message: "Existing email address error." });
+      return;
+    }
+
+    
+     res.status(400).json({ message: "User cannot created." });
   }
 };
 
