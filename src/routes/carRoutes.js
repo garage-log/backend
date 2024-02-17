@@ -3,6 +3,6 @@ import { registerCar } from "../services/carServices.js";
 
 const carRoute = express.Router();
 
-carRoute.get("/", registerCar);
+carRoute.post("/register", registerCar);
 
 export default carRoute;

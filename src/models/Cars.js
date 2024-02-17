@@ -10,10 +10,10 @@ const carSchema = new mongoose.Schema({
     required: true,
   },
   productionYear: {
-    type: Date(),
+    type: Date,
     required: true,
   },
-  plateNuber: {
+  plateNumber: {
     type: String,
     required: true,
   },
