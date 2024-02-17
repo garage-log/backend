@@ -1,6 +1,10 @@
 import mongoose from "mongoose";
 
 const carSchema = new mongoose.Schema({
+  userId: {
+    type: String,
+    required: true,
+  },
   brand: {
     type: String,
     required: true,
