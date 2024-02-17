@@ -28,13 +28,9 @@ const userSchema = new mongoose.Schema({
     type: Date,
     default: Date.now(),
   },
-  roles: {
-    type: Array,
-    default: ["user"],
-  },
   isDeleteAccount: {
     type: Boolean,
-    default: false
+    default: false,
   },
 });
 /*
@@ -48,17 +44,17 @@ const hash = (pass) => {
 */
 
 //Password hashing
-userSchema.pre("save", function(next){
-  if(this.password) {
+userSchema.pre("save", function (next) {
+  if (this.password) {
     this.password = hash(this.password);
     next();
   }
 });
 //Password validate
-userSchema.methods.validatePassword = function ( pass) { 
+userSchema.methods.validatePassword = function (pass) {
   return bcrypt.compare(pass, this.password);
-}
+};
 
 const Users = mongoose.model("Users", userSchema);
 
-export default Users; 
+export default Users;

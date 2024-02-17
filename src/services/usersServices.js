@@ -1,6 +1,18 @@
 import Users from "../models/Users.js";
 import jwt from "jsonwebtoken";
 
+
+
+const register = async (req, res) => {
+  const user = req.body;
+  try {
+    const data = await Users.create(user);
+    res.status(200).json(data);
+  } catch (error) {
+    res.status(400).json({ message: "User could not created." });
+  }
+};
+
 const login = async (req, res) => {
   const { username, password } = req.body;
   const data = await Users.findOne({ username }).exec();
@@ -18,24 +30,14 @@ const login = async (req, res) => {
     username: data.username,
     email: data.email,
   };
-  
+
   const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN);
   res.json({
     user: {
       token: accessToken,
-      ...user, 
+      ...user,
     },
   });
-};
-
-const register = async (req, res) => {
-  const user = req.body;
-  try {
-    const data = await Users.create(user);
-    res.status(200).json(data);
-  } catch (error) {
-    res.status(400).json({ message: "User could not created." });
-  }
 };
 
 const find = async (req, res) => {
