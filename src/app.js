@@ -1,7 +1,9 @@
 import express from "express";
 import bodyParser from "body-parser";
-import "dotenv/config"; 
-import usersRoutes from "./routes/usersRoutes.js"; 
+import "dotenv/config";
+import usersRoutes from "./routes/usersRoutes.js";
+import roleUserRoutes from "./routes/roleUserRoutes.js";
+import carRoute from "./routes/carRoutes.js";
 import mongoose from "mongoose";
 //import cors from 'cors';
 
@@ -25,5 +27,7 @@ mongoose
   .catch((err) => console.log(err));
 
 app.use("/users", usersRoutes);
+app.use("/roleUser", roleUserRoutes);
+app.use("/car", carRoute)
 
 app.listen(PORT, console.log(`Server is running at PORT:${PORT}`));

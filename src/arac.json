@@ -1,0 +1,82 @@
+
+{
+    "marka": "Toyota",
+    "model": "Corolla",
+    "uretimYili": 2023,
+    "motor": {
+      "tip": "Benzin",
+      "silindirHacmi": 1600,
+      "guc": 120
+    },
+    "renk": "Mavi",
+    "vites": "Otomatik",
+    "yakitTuketimi": {
+      "sehirIci": 8.5,
+      "sehirDisi": 6.0,
+      "ortalama": 7.5
+    },
+    "donanim": [
+      "Klima",
+      "Navigasyon",
+      "Hız sabitleyici",
+      "Deri koltuklar"
+    ],
+    "kilometreBilgisi": {
+      "toplamKilometre": 55000,
+      "bakimlar": [
+        {
+          "kilometre": 10000,
+          "tarih": "2024-02-10",
+          "icerik": "Yağ değişimi, filtre değişimi, fren kontrolü"
+        },
+        {
+          "kilometre": 25000,
+          "tarih": "2024-08-22",
+          "icerik": "Aracın genel kontrolü, fren sistem kontrolü, yağ değişimi"
+        },
+        {
+          "kilometre": 40000,
+          "tarih": "2025-04-15",
+          "icerik": "Rot balans ayarı, lastik değişimi, yağ filtresi değişimi"
+        },
+        {
+          "kilometre": 55000,
+          "tarih": "2025-12-05",
+          "icerik": "Fren diskleri değişimi, ön takım kontrolü, yağ değişimi"
+        }
+      ]
+    },
+    "sigortaBilgisi": {
+      "policeNumarasi": "ABC12345",
+      "baslangicTarihi": "2023-02-01",
+      "bitisTarihi": "2024-02-01",
+      "sigortaSirketi": "Anadolu Sigorta",
+      "primTutari": 1500
+    },
+    "kaskoBilgisi": {
+      "policeNumarasi": "KSK67890",
+      "baslangicTarihi": "2023-02-01",
+      "bitisTarihi": "2024-02-01",
+      "sigortaSirketi": "Aksigorta",
+      "primTutari": 1200
+    },
+    "yolYardimBilgisi": {
+      "saglayici": "Assist",
+      "iletisim": "0800 123 45 67"
+    },
+    "yakitMaliyeti": {
+      "toplamMaliyet": 5000,
+      "sonBilancoTarihi": "2025-01-01"
+    },
+    "surusBilgileri": {
+      "ortalamaHiz": 60,
+      "surusSuresi": "25 saat",
+      "surucuDavranis": "Normal, uygun hızda sürüş"
+    },
+    "garantiVeServis": {
+      "garantiSuresi": "5 yıl",
+      "yetkiliServis": "Toyota Yetkili Servis",
+      "iletisim": "0212 555 55 55"
+    }
+  }
+  
