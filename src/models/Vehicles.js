@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const carSchema = new mongoose.Schema({
+const vehiclesSchema = new mongoose.Schema({
   userId: {
     type: String,
     required: true,
@@ -31,5 +31,5 @@ const carSchema = new mongoose.Schema({
   },
 });
 
-const Cars = mongoose.model("Cars", carSchema);
+const Cars = mongoose.model("Vehicles", vehiclesSchema);
 export default Cars;
