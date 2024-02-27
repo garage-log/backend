@@ -11,6 +11,6 @@ const roleUserSchema = new mongoose.Schema({
   },
 });
 
-const RoleUser = mongoose.model("RoleUser", roleUserSchema);
+const RoleUser = mongoose.model("roleusers", roleUserSchema);
 
 export default RoleUser;

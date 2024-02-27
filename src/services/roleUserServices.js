@@ -30,4 +30,20 @@ const findAllRole = async (req, res) => {
   }
 };
 
-export { registerRoleUser, findAllRole };
+const findUserRoles = async (roleIds) => {
+  try {
+    const data = await RoleUser.find().exec();
+
+    const result = data
+      .map((item) => {
+        if (roleIds.includes(item._id)) return item;
+      })
+      .filter((i) => i != null);
+
+    return result;
+  } catch (error) {
+    console.log("Error on finding logged-in user roles");
+  }
+};
+
+export { registerRoleUser, findAllRole, findUserRoles };
