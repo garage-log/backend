@@ -29,10 +29,10 @@ const userSchema = new mongoose.Schema({
     type: Date,
     default: Date.now(),
   },
-  role: {
+  roles: {
     type: Array,
     ref: "RoleUser",
-    default: ["65abdcc2e96882426a0ba861"],
+    default: [""],
   },
   isDeleteAccount: {
     type: Boolean,

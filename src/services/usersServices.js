@@ -1,5 +1,7 @@
 import Users from "../models/Users.js";
 import jwt from "jsonwebtoken";
+import { findUserRoles } from "./roleUserServices.js";
+import { findUserVehicles } from "./vehicleServices.js";
 
 const register = async (req, res) => {
   const user = req.body;
@@ -7,7 +9,7 @@ const register = async (req, res) => {
     const data = await Users.create(user);
     res.status(200).json(data);
   } catch (error) {
-     if (error.keyValue.username) {
+    if (error.keyValue.username) {
       res.status(400).json({ message: "Existing username error." });
       return;
     }
@@ -17,8 +19,7 @@ const register = async (req, res) => {
       return;
     }
 
-    
-     res.status(400).json({ message: "User cannot created." });
+    res.status(400).json({ message: "User cannot created." });
   }
 };
 
@@ -34,10 +35,16 @@ const login = async (req, res) => {
     return res.status(403).json({ message: " The password is incorrect" });
   }
 
+  const roleNames = await findUserRoles(data.roles);
+
+  const userVehicles = await findUserVehicles(data._id);
+
   const user = {
     id: data._id,
     username: data.username,
     email: data.email,
+    roles: roleNames,
+    userVehicles,
   };
 
   const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN);
