@@ -25,7 +25,7 @@ const vehicleSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  feulType: {
+  fuelType: {
     type: Array,
     required: true,
   },
