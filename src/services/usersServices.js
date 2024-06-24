@@ -52,7 +52,7 @@ const login = async (req, res) => {
   const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN);
   res.json({
     user: {
-      authToken: accessToken,
+      token: accessToken,
       ...user,
     },
   });
@@ -65,10 +65,10 @@ const checkUserByToken = async (req, res) => {
     return res.status(403).json({ message: "No token data" });
   }
 
-  const authToken = headerAuth.split(" ")[1];
-  const user = jwt.decode(authToken);
+  const token = headerAuth.split(" ")[1];
+  const user = jwt.decode(token);
 
-  res.status(200).json({ ...user, authToken });
+  res.status(200).json({ ...user, token });
 };
 
 const find = async (req, res) => {
