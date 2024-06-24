@@ -25,7 +25,9 @@ const register = async (req, res) => {
 
 const login = async (req, res) => {
   const { username, password } = req.body;
+  console.log(username, password);
   const data = await Users.findOne({ username }).exec();
+  console.log(data);
   if (!data) {
     return res.status(404).json({ message: "User cannot be found" });
   }
@@ -50,10 +52,23 @@ const login = async (req, res) => {
   const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN);
   res.json({
     user: {
-      token: accessToken,
+      authToken: accessToken,
       ...user,
     },
   });
+};
+
+const checkUserByToken = async (req, res) => {
+  const headerAuth = req.headers["authorization"];
+
+  if (!headerAuth) {
+    return res.status(403).json({ message: "No token data" });
+  }
+
+  const authToken = headerAuth.split(" ")[1];
+  const user = jwt.decode(authToken);
+
+  res.status(200).json({ ...user, authToken });
 };
 
 const find = async (req, res) => {
@@ -115,4 +130,4 @@ const remove = async (req, res) => {
   }
 };
 
-export { login, register, find, allUsers, update, remove };
+export { login, register, find, allUsers, update, remove, checkUserByToken };
