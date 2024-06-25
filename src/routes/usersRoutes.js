@@ -6,12 +6,14 @@ import {
         allUsers, 
         update,
         remove,
+        checkUserByToken
     } from "../services/usersServices.js";
 import auth from "../middlewares/auth.js";
 
 const router = express.Router();
 
 router.post("/login", login);
+router.get("/check/me", checkUserByToken);
 router.post("/register", register);
 router.get("/:id", find);
 router.post("/allUsers", allUsers);

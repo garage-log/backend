@@ -14,7 +14,9 @@ const registerVehicle = async (req, res) => {
 const findUserVehicle = async (req, res) => {
   try {
     const userVehicle = req.body;
-    const data = await Vehicle.findOne({ userId: userVehicle.userId }).exec();
+
+    console.log(userVehicle);
+    const data = await Vehicle.find({ userId: userVehicle.userId }).exec();
     res.status(200).json(data);
   } catch (error) {
     res.status(400).json({ message: "User's vehicle could not find." });

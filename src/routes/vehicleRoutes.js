@@ -10,6 +10,6 @@ const vehicleRoute = express.Router();
 
 vehicleRoute.post("/register", registerVehicle);
 vehicleRoute.post("/findUserVehicle", auth, findUserVehicle);
-vehicleRoute.post("/findAllVehicle", findAllVehicle);
+vehicleRoute.post("/findAllVehicle", auth, findAllVehicle);
 
 export default vehicleRoute;

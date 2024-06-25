@@ -56,6 +56,19 @@ const login = async (req, res) => {
   });
 };
 
+const checkUserByToken = async (req, res) => {
+  const headerAuth = req.headers["authorization"];
+
+  if (!headerAuth) {
+    return res.status(403).json({ message: "No token data" });
+  }
+
+  const token = headerAuth.split(" ")[1];
+  const user = jwt.decode(token);
+
+  res.status(200).json({ ...user, token });
+};
+
 const find = async (req, res) => {
   const id = req.params.id;
   try {
@@ -115,4 +128,4 @@ const remove = async (req, res) => {
   }
 };
 
-export { login, register, find, allUsers, update, remove };
+export { login, register, find, allUsers, update, remove, checkUserByToken };
